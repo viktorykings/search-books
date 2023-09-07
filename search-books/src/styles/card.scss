@@ -1,9 +1,21 @@
 .card{
-    height: 150px;
-    width: 200px;
+    min-height: 350px;
+    height: fit-content;
+    width: 220px;
     border: 1px solid gray;
+    background-color: rgb(218, 216, 216);
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
     cursor: pointer;
+    .info{
+      text-align: left;
+      .category{
+        color: #747373;
+        text-decoration: underline;
+      }
+      h5{
+        font-size: 16px;
+      }
+    }
   }

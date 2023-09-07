@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/card.scss'
+import { CardPrewiew } from '../types/interfaces';
 
-export const Card = () => {
+export const Card = (props: CardPrewiew) => {
+
   return (
-    <div className="card" id=''>
-      <img src='' alt="img" className="image" />
+    <div className="card" id={props.id} >
+      <img src={props.image && props.image.smallThumbnail} alt="img" className="image" />
       <div className="info">
-        <h5>Name</h5>
-        <p>Category</p>
-        <p>Author</p>
+        <p className='category'>{props.categories && props.categories}</p>
+        <h5>{props.title}</h5>
+        {props.authors && props.authors.map(el => <p>{el}</p>)}
       </div>
     </div>  )
 }
