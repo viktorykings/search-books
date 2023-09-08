@@ -24,7 +24,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<CardsContainer />} />
-          {data && <Route path="/:book/*" element={<Book etag={data.etag} id={data.id} volumeInfo={{
+          {data && <Route path="/book/:id" element={<Book etag={data.etag} id={data.id} volumeInfo={{
             image: data.volumeInfo.imageLinks?.thumbnail,
             title: data.volumeInfo.title,
             authors: data.volumeInfo.authors,
