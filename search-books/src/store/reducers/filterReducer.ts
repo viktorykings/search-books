@@ -1,7 +1,7 @@
 import { FilterAction, FilterState, filterActionTypes } from '../types/filter';
 
 const initialState: FilterState = {
-  filter: 'all',
+  filter: 'All',
 };
 export const filterReducer = (filter = initialState, action: FilterAction): FilterState => {
   switch (action.type) {

@@ -12,11 +12,12 @@ const CardsContainer = () => {
   const { sort } = useAppSelector((state) => state.sort);
   const { filter } = useAppSelector((state) => state.filter);
   const { id } = useAppSelector((state) => state.bookInfo);
+  let pag = 0
   const {
     data: books,
     error,
     isLoading,
-  } = googleBooksApi.useGetBooksQuery({q: search, sort: sort})
+  } = googleBooksApi.useGetBooksQuery({q: search, sort: sort, startInd: pag, category: filter})
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
 
@@ -35,23 +36,17 @@ const CardsContainer = () => {
     }
 
   };
-  const filteredBooks = (arr: BooksData[], filterValue: string) => {
-    if (filterValue === 'All') return arr
-    arr = arr.filter(el => el.volumeInfo.categories)
-    arr = arr.filter(el => el.volumeInfo.categories!.some(el => el === filterValue))
-    console.log(arr)
-    return arr
-  }
 
   return (
     <>
       <div className="itemsCount">Found {books && books.totalItems} results</div>
       <div className="cards-container" role="contentinfo" onClick={handleClick}>
         {books && books.items &&
-          filteredBooks(books.items, filter).map((el) => (
+          books.items.map((el) => (
             <Card key={el.etag} id={el.id} title={el.volumeInfo.title} image={el.volumeInfo.imageLinks} authors={el.volumeInfo.authors} categories={el.volumeInfo.categories} />
           ))}
       </div>
+      <button onClick={}>show more</button>
     </>
   );
 };

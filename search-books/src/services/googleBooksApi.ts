@@ -7,22 +7,26 @@ interface QueryRes {
 }
 interface queryBody {
   q: string,
-  sort: string
+  sort: string,
+  startInd: number,
+  category: string
 }
+
+const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
 export const googleBooksApi = createApi({
   reducerPath: 'googleBooksApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://www.googleapis.com/books/v1/volumes' }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getBooks: builder.query<QueryRes, queryBody>({
-      // query: (name) => `volumes?q=${name}:keyes&key=AIzaSyDifAsOPfc1C8OTkFSJRyBHf023B1h0Ri8`,
-      query: ({q, sort}: queryBody) => ({
+      query: ({q, sort, startInd, category}: queryBody) => ({
         url: '',
         params: {
-          q: q,
+          q: `+intitle:${q}+insubject${category === 'All' ? '' : category}`,
           key: 'AIzaSyDifAsOPfc1C8OTkFSJRyBHf023B1h0Ri8',
+          startIndex: 0,
           maxResults: 30,
-          orderBy: sort
+          orderBy: sort,
         },
       }),
     }),
