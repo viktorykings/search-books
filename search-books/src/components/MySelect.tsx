@@ -13,7 +13,7 @@ export const MySelect = ({options, label, id, handleSelect}: SelectProps) => {
     <>
     <label htmlFor={id}>{label}</label>
     <select name={id} id={id} onChange={handleSelect}>
-        {options.map(el => <option value={el}>{el}</option>)}
+        {options.map(el => <option key={el} value={el}>{el}</option>)}
     </select>
     </>
   )

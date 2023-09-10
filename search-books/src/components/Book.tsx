@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/book.scss';
 import { googleBooksApi } from '../services/googleBooksApi';
 import { useAppSelector } from '../hooks/useTypesSelector';
+import Img from '../assets/no-image.png'
 
 export const Book = () => {
   const { bookId } = useAppSelector((state) => state.booksState);
@@ -17,7 +18,7 @@ export const Book = () => {
     <>
       <div className="breadcrumbs">{data.volumeInfo.categories ? data.volumeInfo.categories : 'unknown category'}</div>
       <div className='bookInfo'>
-        <img src={data.volumeInfo.imageLinks?.smallThumbnail} alt={data.volumeInfo.title} />
+        <img src={data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : Img} alt={data.volumeInfo.title} />
         <div className="description">
           <div className="title">{data.volumeInfo.title}</div>
           <p className='authors'>{data.volumeInfo.authors}</p>

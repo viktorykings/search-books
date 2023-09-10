@@ -9,14 +9,19 @@ import { showMore } from '../store/action-creator/showMore';
 
 export const SearchBar = () => {
   const { search } = useAppSelector((state) => state.booksState);
-  const [searchVal, setSearchVal] = useState(search);
+  const [searchVal, setSearchVal] = useState('');
   const dispatch = useAppDispatch();
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
+  const searchBook = () =>{
       dispatch(googleBooksApi.util.resetApiState())
       dispatch(showMore(0))
       dispatch(saveSearchValue(searchVal));
+      setSearchVal('')
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      searchBook()
     }
   };
 
@@ -25,14 +30,15 @@ export const SearchBar = () => {
       <input
         id="search"
         type="search"
+        value={searchVal}
         onChange={(e) => {
           setSearchVal(e.target.value);
         }}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <label htmlFor="search">
-        <img src={Icon} alt="Search" className="icon" />
-      </label>
+        <button onClick={searchBook} disabled={!searchVal}>
+          <img src={Icon} alt="Search" className="icon" />
+        </button>
     </div>)
 }
 
