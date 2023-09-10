@@ -22,3 +22,9 @@
     display: flex;
     margin: 0 30px;
 }
+@media (max-width: 560px) {
+    .filters{
+        flex-direction: column;
+        margin: 10px 0;
+    }
+}
