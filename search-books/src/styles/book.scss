@@ -1,23 +1,29 @@
-.bookInfo{
+.bookInfo {
     display: flex;
     padding: 30px;
-    img{
-        width: 50%;;
+
+    img {
+        width: 50%;
+        ;
     }
-    .description{
+
+    .description {
         width: 50%;
         margin: 0 0 0 20px;
     }
 }
-.bookPage{
+
+.bookPage {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    button{
+
+    button {
         width: 250px;
         height: 40px;
     }
-    .breadcrumbs{
+
+    .breadcrumbs {
         text-align-last: left;
     }
 }

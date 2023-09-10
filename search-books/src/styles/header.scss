@@ -1,4 +1,4 @@
-.header{
+.header {
     padding: 10px 0 0;
     width: 100%;
     background-color: #6e6d6d;
@@ -8,22 +8,26 @@
     justify-content: center;
     align-items: center;
     height: 200px;
-    h1{
+
+    h1 {
         margin: 0 0 20px;
     }
 }
-.filters{
+
+.filters {
     display: flex;
     justify-content: center;
     margin: 20px 0 0;
 }
+
 .category,
-.sort{
+.sort {
     display: flex;
     margin: 0 30px;
 }
+
 @media (max-width: 560px) {
-    .filters{
+    .filters {
         flex-direction: column;
         margin: 10px 0;
     }

@@ -4,10 +4,11 @@ interface SelectProps{
     options: string[],
     label: string,
     id: string,
-    handleSelect:  (e: React.ChangeEvent<HTMLSelectElement>) => void
+    handleSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 export const MySelect = ({options, label, id, handleSelect}: SelectProps) => {
+
   return (
     <>
     <label htmlFor={id}>{label}</label>

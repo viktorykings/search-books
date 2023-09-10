@@ -9,7 +9,7 @@ import { sortFilter } from '../constants/filters';
 export const Sorting = () => {
   const dispatch = useAppDispatch();
 
-  const handleSelect = (e:  React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(googleBooksApi.util.resetApiState())
     dispatch(showMore(0))
     dispatch(saveSortValue(e.target.value))
