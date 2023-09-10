@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Icon from '../assets/search-icon.png';
 import '../styles/search.scss'
 import { useAppDispatch, useAppSelector } from '../hooks/useTypesSelector';
@@ -30,9 +30,9 @@ export const SearchBar = () => {
         }}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-    <label htmlFor="search">
+      <label htmlFor="search">
         <img src={Icon} alt="Search" className="icon" />
       </label>
-    </div>  )
+    </div>)
 }
 

@@ -1,17 +1,29 @@
 import React from 'react';
-import { BooksData } from '../types/interfaces';
+import '../styles/book.scss';
+import { googleBooksApi } from '../services/googleBooksApi';
+import { useAppSelector } from '../hooks/useTypesSelector';
 
-export const Book = (props: BooksData) => {
+export const Book = () => {
+  const { bookId } = useAppSelector((state) => state.booksState);
+  const { data, error, isLoading } = googleBooksApi.useGetBookQuery(bookId)
+
+  if (isLoading) return <p>Loading...</p>
+
+  if (!data) {
+    return <p>book not found</p>
+  }
 
   return (
-    <div className='bookInfo'>
-        <img src={props.volumeInfo.imageLinks?.smallThumbnail} alt={props.volumeInfo.title} />
+    <>
+      <div className="breadcrumbs">{data.volumeInfo.categories ? data.volumeInfo.categories : 'unknown category'}</div>
+      <div className='bookInfo'>
+        <img src={data.volumeInfo.imageLinks?.smallThumbnail} alt={data.volumeInfo.title} />
         <div className="description">
-            <div className="breadcrumbs">cat/cat</div>
-            <div className="title">{props.volumeInfo.title}</div>
-            <p className='authors'>{props.volumeInfo.authors}</p>
-            <p>text</p>
+          <div className="title">{data.volumeInfo.title}</div>
+          <p className='authors'>{data.volumeInfo.authors}</p>
+          <p>{data.volumeInfo.description}</p>
         </div>
-    </div>
+      </div>
+    </>
   )
 }

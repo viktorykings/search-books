@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/card.scss'
 import { CardPrewiew } from '../types/interfaces';
-import { googleBooksApi } from '../services/googleBooksApi';
 
 export const Card = (props: CardPrewiew) => {
-  const {data} = googleBooksApi.useGetBookQuery(props.id)
 
   return (
     <div className="card" id={props.id} >

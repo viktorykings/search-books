@@ -9,7 +9,8 @@ export interface BooksData{
         imageLinks?:{
             smallThumbnail?: string,
             thumbnail?: string
-        }
+        },
+        description: string
     }
 }
 export interface CardPrewiew{

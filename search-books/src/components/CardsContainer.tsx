@@ -29,9 +29,10 @@ const CardsContainer = () => {
   }
 
   const handleClick = (e: React.MouseEvent) => {
-    if ((e.target as Element).closest('.card')?.id) {
-      dispatch(saveBookId((e.target as Element).closest('.card')!.id));
-      navigate(`/book/${bookId}`)
+    const id = (e.target as Element).closest('.card')?.id;
+    if (id) {
+      dispatch(saveBookId(id));
+      navigate(`/book/${bookId ? bookId : id}`)
     }
 
   };

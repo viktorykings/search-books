@@ -14,7 +14,8 @@ const initialState: SearchState = {
       title: '',
       authors: undefined,
       categories: undefined,
-      imageLinks: undefined
+      imageLinks: undefined,
+      description: ''
     }
   }
 };
