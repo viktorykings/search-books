@@ -9,7 +9,7 @@ interface queryBody {
   q: string,
   sort: string,
   startInd: number,
-  category: string
+  category: string,
 }
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
@@ -22,13 +22,22 @@ export const googleBooksApi = createApi({
       query: ({q, sort, startInd, category}: queryBody) => ({
         url: '',
         params: {
-          q: `+intitle:${q}+insubject${category === 'All' ? '' : category}`,
+          q: `${q}+insubject:${category === 'All' ? '' : category}`,
           key: 'AIzaSyDifAsOPfc1C8OTkFSJRyBHf023B1h0Ri8',
-          startIndex: 0,
+          startIndex: startInd,
           maxResults: 30,
           orderBy: sort,
         },
       }),
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName
+      },
+      merge: (currentCache, newItems) => {
+        if (newItems.items) currentCache.items.push(...newItems.items)
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg
+      },
     }),
     getBook: builder.query<BooksData, string>({
       query: (id: string) => ({

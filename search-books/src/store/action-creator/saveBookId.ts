@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux';
-import { BookInfoAction, BookInfoActionTypes } from '../types/bookInfo';
+// import { BookInfoAction } from '../types/bookInfo';
+import { BookInfoAction, booksStateActionTypes } from '../types/booksState';
 
 export const saveBookId = (id: string) => {
   return (dispatch: Dispatch<BookInfoAction>) => {
-    dispatch({ type: BookInfoActionTypes.CHOOSE_BOOK, payload: id });
+    dispatch({ type: booksStateActionTypes.SAVE_BOOK_ID, payload: id });
   };
 };

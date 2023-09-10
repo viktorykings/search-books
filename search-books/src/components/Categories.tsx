@@ -1,13 +1,15 @@
 import React from 'react';
 import { useAppDispatch } from '../hooks/useTypesSelector';
 import { saveFilterValue } from '../store/action-creator/filter';
-
+import { googleBooksApi } from '../services/googleBooksApi';
+import { showMore } from '../store/action-creator/showMore';
 
 export const Categories = () => {
   const dispatch = useAppDispatch();
   const handleSelect = (e:  React.ChangeEvent<HTMLSelectElement>) => {
+      dispatch(googleBooksApi.util.resetApiState())
+      dispatch(showMore(0))
     dispatch(saveFilterValue(e.target.value))
-    console.log(e.target.value)
   }
   const categoriesFilter = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry']
   return (

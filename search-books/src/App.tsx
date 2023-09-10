@@ -11,13 +11,20 @@ import { googleBooksApi } from './services/googleBooksApi';
 
 
 function App() {
-  // const { id } = useAppSelector((state) => state.googleBooksApi.queries.ge);
-  const { id } = useAppSelector((state) => state.bookInfo);
-  const {
-    data,
-    error,
-    isLoading,
-  } = googleBooksApi.useGetBookQuery(id);
+  const { singleBookData } = useAppSelector((state) => state.booksState);
+  // const {
+  //   data,
+  //   error,
+  //   isLoading,
+  // } = googleBooksApi.useGetBookQuery(bookId);
+
+  // if (isLoading) {
+  //   return <h5>Loading....</h5>;
+  // }
+  // if (error) {
+  //   return <h5>Not found</h5>;
+  // }
+  const data = singleBookData
   return (
     <div className="App">
       <BrowserRouter>
