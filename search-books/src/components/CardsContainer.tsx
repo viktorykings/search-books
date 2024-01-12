@@ -27,7 +27,6 @@ const CardsContainer = () => {
   if (error) {
     return <h5>Failed to fetch</h5>;
   }
-
   const handleClick = (e: React.MouseEvent) => {
     const id = (e.target as Element).closest('.card')?.id;
     if (id) {
@@ -40,7 +39,6 @@ const CardsContainer = () => {
     refetch()
     dispatch(showMore(page))
   }
-
   return (
     <>
       <div className="itemsCount">Found {books && books.totalItems}  results</div>
@@ -50,7 +48,7 @@ const CardsContainer = () => {
             <Card key={el.etag} id={el.id} title={el.volumeInfo.title} image={el.volumeInfo.imageLinks} authors={el.volumeInfo.authors} categories={el.volumeInfo.categories} />
           ))}
       </div>
-      {(books && books.items.length < books.totalItems) && <button onClick={() => showMoreBooks(pagination)}>show more</button>}
+      {(books && books.items && books.items.length < books.totalItems) && <button onClick={() => showMoreBooks(pagination)}>show more</button>}
     </>
   );
 };

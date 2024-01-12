@@ -13,7 +13,7 @@ interface queryBody {
 }
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
-
+const KEY =  process.env.REACT_APP_USER_TOKEN;
 export const googleBooksApi = createApi({
   reducerPath: 'googleBooksApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
@@ -22,8 +22,8 @@ export const googleBooksApi = createApi({
       query: ({q, sort, startInd, category}: queryBody) => ({
         url: '',
         params: {
-          q: `${q}+insubject:${category === 'All' ? '' : category}`,
-          key: 'AIzaSyDifAsOPfc1C8OTkFSJRyBHf023B1h0Ri8',
+          q: q,
+          key: KEY,
           startIndex: startInd,
           maxResults: 30,
           orderBy: sort,
